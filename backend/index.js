@@ -5,7 +5,7 @@ const connectDB = require('./src/config/db');
 const authRoutes = require('./src/routes/auth');
 const errorHandler = require('./src/middlewares/errorHandler');
 const courseRoutes = require('./src/routes/course');
-
+const enrollmentRoutes = require('./src/routes/enrollment');
 
 
 const app = express();
@@ -17,6 +17,7 @@ connectDB();
 
 app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
+app.use('/api/enrollments', enrollmentRoutes);
 
 // Error handler middleware (should be last)
 app.use(errorHandler);
