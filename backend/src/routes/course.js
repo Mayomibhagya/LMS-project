@@ -8,5 +8,8 @@ router.post('/', authMiddleware, courseController.createCourse);
 router.get('/', courseController.getCourses);
 router.put('/:id', authMiddleware, courseController.updateCourse);
 router.delete('/:id', authMiddleware, courseController.deleteCourse);
+const upload = require('../middlewares/uploadMiddleware');
+
+router.post('/:id/upload', authMiddleware, upload.single('file'), courseController.uploadMaterial);
 
 module.exports = router;

@@ -64,3 +64,24 @@ exports.deleteCourse = async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 };
+
+// upload couse pdf
+exports.uploadMaterial = async (req, res) => {
+  try {
+    if (req.user.role !== 'lecturer' && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    const course = await Course.findById(req.params.id);
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+
+    const filePath = req.file.path;
+    course.materials.push(filePath);
+    await course.save();
+
+    res.status(200).json({ message: 'File uploaded successfully', filePath });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+

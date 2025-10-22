@@ -7,6 +7,7 @@ const CourseSchema = new mongoose.Schema({
   category: { type: String },
   price: { type: Number, default: 0 },
   lecturer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  materials: [{ type: String }], //files upload
   createdAt: { type: Date, default: Date.now }
 });
 

@@ -11,6 +11,9 @@ const paymentRoutes = require('./src/routes/payment');
 const app = express();
 app.use(express.json());
 
+app.use('/uploads', express.static('uploads'));
+
+
 // connect with MongoDB
 connectDB();
 
