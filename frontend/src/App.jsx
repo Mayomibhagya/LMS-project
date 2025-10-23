@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Courses from "./pages/Courses";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const navbarStyle = {
@@ -39,6 +40,7 @@ function App() {
           <li><Link style={linkStyle} to="/">Home</Link></li>
           <li><Link style={linkStyle} to="/courses">Courses</Link></li>
           <li><Link style={linkStyle} to="/login">Login</Link></li>
+          <li><Link style={linkStyle} to="/dashboard">Dashboard</Link></li>
         </ul>
       </nav>
 
@@ -47,6 +49,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

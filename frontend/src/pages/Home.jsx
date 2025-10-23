@@ -6,7 +6,7 @@ function Home() {
 
   return (
     <div style={style}>
-      <h1>Welcome to Mini LMS</h1>
+      <h1>Welcome to LMS</h1>
       <p>Learn, Enroll, and Grow with our simple LMS platform.</p>
     </div>
   );
