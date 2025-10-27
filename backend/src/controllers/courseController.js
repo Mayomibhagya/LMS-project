@@ -8,9 +8,18 @@ exports.createCourse = async (req, res) => {
       return res.status(403).json({ message: 'Access denied' });
     }
 
-    const course = await Course.create({ ...req.body, lecturer: req.user.id });
+    const course = await Course.create({
+      title: req.body.title,
+      description: req.body.description,
+      category: req.body.category,
+      price: req.body.price,
+      createdBy: req.user.id,     
+      lecturer: req.user.id       
+    });
+
     res.status(201).json(course);
   } catch (error) {
+    console.error('Error creating course:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
@@ -21,11 +30,27 @@ exports.getCourses = async (req, res) => {
     const courses = await Course.find().populate('lecturer', 'name email');
     res.json(courses);
   } catch (error) {
+    console.error('Error getting courses:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// Update course
+//Get courses by lec
+exports.getMyCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'lecturer') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    const courses = await Course.find({ createdBy: req.user.id });
+    res.json(courses);
+  } catch (error) {
+    console.error('Error fetching lecturer courses:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+
+//Update course
 exports.updateCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);
@@ -33,7 +58,7 @@ exports.updateCourse = async (req, res) => {
 
     if (
       req.user.role !== 'admin' &&
-      req.user.id !== course.lecturer.toString()
+      req.user.id !== (course.createdBy?.toString() || course.lecturer?.toString())
     ) {
       return res.status(403).json({ message: 'Not authorized' });
     }
@@ -41,6 +66,7 @@ exports.updateCourse = async (req, res) => {
     const updated = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.json(updated);
   } catch (error) {
+    console.error('Error updating course:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
@@ -53,7 +79,7 @@ exports.deleteCourse = async (req, res) => {
 
     if (
       req.user.role !== 'admin' &&
-      req.user.id !== course.lecturer.toString()
+      req.user.id !== (course.createdBy?.toString() || course.lecturer?.toString())
     ) {
       return res.status(403).json({ message: 'Not authorized' });
     }
@@ -61,11 +87,12 @@ exports.deleteCourse = async (req, res) => {
     await course.deleteOne();
     res.json({ message: 'Course deleted successfully' });
   } catch (error) {
+    console.error('Error deleting course:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
 
-// upload couse pdf
+//Upload course material
 exports.uploadMaterial = async (req, res) => {
   try {
     if (req.user.role !== 'lecturer' && req.user.role !== 'admin') {
@@ -81,7 +108,7 @@ exports.uploadMaterial = async (req, res) => {
 
     res.status(200).json({ message: 'File uploaded successfully', filePath });
   } catch (error) {
+    console.error('Error uploading material:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };
-

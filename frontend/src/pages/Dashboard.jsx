@@ -24,7 +24,7 @@ function Dashboard() {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get("http://localhost:5000/api/enrollments/my" , {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}`,},
+          headers: { Authorization: `Bearer ${token}` },
         });
         setEnrollments(res.data);
       } catch (err) {

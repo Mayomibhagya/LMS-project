@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Courses from "./pages/Courses";
 import Dashboard from "./pages/Dashboard";
+import LecturerDashboard from "./pages/LecturerDashboard";
 
 function App() {
   const navbarStyle = {
@@ -41,6 +42,8 @@ function App() {
           <li><Link style={linkStyle} to="/courses">Courses</Link></li>
           <li><Link style={linkStyle} to="/login">Login</Link></li>
           <li><Link style={linkStyle} to="/dashboard">Dashboard</Link></li>
+          <li><Link style={linkStyle} to="/lecturer">Lecturer</Link></li>
+
         </ul>
       </nav>
 
@@ -50,6 +53,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/lecturer" element={<LecturerDashboard />} />
         </Routes>
       </div>
     </Router>

@@ -6,6 +6,7 @@ const courseController = require('../controllers/courseController');
 
 router.post('/', authMiddleware, courseController.createCourse);
 router.get('/', courseController.getCourses);
+router.get('/my', authMiddleware, courseController.getMyCourses);
 router.put('/:id', authMiddleware, courseController.updateCourse);
 router.delete('/:id', authMiddleware, courseController.deleteCourse);
 const upload = require('../middlewares/uploadMiddleware');
