@@ -1,9 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Courses from "./pages/Courses";
 import Dashboard from "./pages/Dashboard";
 import LecturerDashboard from "./pages/LecturerDashboard";
+import Register from "./pages/Register";
+import AdminDashboard from "./pages/AdminDashboard";
+import Profile from "./pages/Profile";
 
 function App() {
   const navbarStyle = {
@@ -35,7 +39,8 @@ function App() {
 
   return (
     <Router>
-      <nav style={navbarStyle}>
+      <Navbar />
+      {/* <nav style={navbarStyle}>
         <h2>Mini LMS</h2>
         <ul style={navLinks}>
           <li><Link style={linkStyle} to="/">Home</Link></li>
@@ -45,7 +50,7 @@ function App() {
           <li><Link style={linkStyle} to="/lecturer">Lecturer</Link></li>
 
         </ul>
-      </nav>
+      </nav> */}
 
       <div style={containerStyle}>
         <Routes>
@@ -54,6 +59,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/lecturer" element={<LecturerDashboard />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>

@@ -1,0 +1,213 @@
+.dashboard {
+  padding: 30px;
+  font-family: Arial, sans-serif;
+  background: #f6f7fa;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  color: #232f47;
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+}
+
+.dashboard-empty {
+  text-align: center;
+  color: #888;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.enrollment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.enrollment-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.enrollment-course {
+  color: #0666d5;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.enrollment-category {
+  margin-bottom: 7px;
+  color: #345;
+}
+
+.enrollment-payment {
+  margin-bottom: 0;
+  color: #006185;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.btn-pay {
+  background: #00a859;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-weight: bold;
+  margin-top: 18px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s, opacity 0.15s;
+  box-shadow: 0 1px 5px rgba(36,100,50,0.06);
+}
+.btn-pay:hover:enabled {
+  background: #00753b;
+}
+.btn-pay:disabled {
+  background: #b9e6ce;
+  color: #468067;
+  cursor: default;
+  opacity: 0.7;
+}
+.btn-materials {
+  background: #0078ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: 0.6px;
+  transition: background 0.15s;
+  box-shadow: 0 1px 5px rgba(0,60,170,0.07);
+}
+.btn-materials:hover:enabled {
+  background: #005bbb;
+}
+.dashboard-materials-modal {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  display: flex;
+  background: rgba(18, 34, 55, 0.34);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.dashboard-materials {
+  background: #fff;
+  padding: 28px 26px 18px 26px;
+  border-radius: 12px;
+  box-shadow: 0 4px 26px rgba(0,95,255,0.18);
+  min-width: 320px;
+  position: relative;
+  max-width: 90vw;
+}
+.close-btn {
+  position: absolute;
+  top: 10px; right: 16px;
+  font-size: 22px;
+  background: none;
+  color: #447;
+  border: none;
+  cursor: pointer;
+}
+.materials-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+.materials-list li {
+  margin: 0 0 7px 0;
+  font-size: 1.08rem;
+}
+.materials-list a {
+  color: #0078ff;
+  text-decoration: underline;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.materials-list a:hover { color: #003789; }
+.materials-error {
+  color: #d8002e;
+  background: #fff9fd;
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin: 8px 0;
+}
+
+.section-progress {
+  background: #fff;
+  border-radius: 9px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin: 0 auto 34px auto;
+  padding: 26px 32px 18px 32px;
+  max-width: 440px;
+}
+.section-progress h3 {
+  font-size: 1.13rem;
+  margin-bottom: 12px;
+  color: #0f3458;
+}
+.progress-bar-bg {
+  height: 20px;
+  background: #e5edfa;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(1,60,200,0.05);
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0078ff 60%, #3ad4ec 100%);
+  border-radius: 10px 0 0 10px;
+  transition: width 0.27s cubic-bezier(.6,.5,0,1);
+}
+.progress-stats {
+  text-align: right;
+  color: #306;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.btn-complete {
+  background: #0078ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 0;
+  font-weight: bold;
+  margin-top: 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s;
+  width: 100%;
+  box-shadow: 0 1px 5px rgba(0,60,170,0.07);
+}
+.btn-complete:disabled {
+  background: #aacff7;
+  color: #2561ab;
+  cursor: no-drop;
+  opacity: 0.7;
+}
+.btn-complete:hover:enabled {
+  background: #005bbb;
+}
+.enrollment-status {
+  color: #8868ff;
+  font-size: 1rem;
+  margin: 0 0 7px 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}

@@ -27,7 +27,7 @@ exports.enrollCourse = async (req, res) => {
   }
 };
 
-// View enrolled courses student
+// View enrolled courses by student
 exports.getMyEnrollments = async (req, res) => {
   try {
     const enrollments = await Enrollment.find({ student: req.user.id })
@@ -38,7 +38,7 @@ exports.getMyEnrollments = async (req, res) => {
   }
 };
 
-// View all enrollments (lecturer or admin)
+// View all enrollments by lecturer or admin
 exports.getAllEnrollments = async (req, res) => {
   try {
     if (req.user.role !== 'lecturer' && req.user.role !== 'admin')
@@ -50,5 +50,30 @@ exports.getAllEnrollments = async (req, res) => {
     res.json(enrollments);
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
+  }
+};
+
+// Mark a course as completed by student
+exports.markCompleted = async (req, res) => {
+  try {
+    const enrollment = await Enrollment.findById(req.params.id);
+    if (!enrollment) return res.status(404).json({ message: 'Enrollment not found' });
+    if (enrollment.student.toString() !== req.user.id) return res.status(403).json({ message: 'Not authorized' });
+    enrollment.status = 'completed';
+    await enrollment.save();
+    res.json({ message: 'Marked as completed', enrollment });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
+  }
+};
+
+exports.getProgress = async (req, res) => {
+  try {
+    const enrollments = await Enrollment.find({ student: req.user.id });
+    const completed = enrollments.filter(e => e.status === 'completed').length;
+    const total = enrollments.length;
+    res.json({ completed, total, percent: total > 0 ? Math.round((completed / total)*100) : 0 });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
   }
 };

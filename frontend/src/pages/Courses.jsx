@@ -1,42 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./Courses.css";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
-
-  const box = {
-    padding: "30px",
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#f7f9fc",
-    minHeight: "100vh",
-  };
-
-  const grid = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-    gap: "15px",
-    marginTop: "20px",
-  };
-
-  const card = {
-    background: "white",
-    padding: "15px",
-    borderRadius: "8px",
-    boxShadow: "0 0 5px rgba(0,0,0,0.1)",
-  };
-
-  const button = {
-    marginTop: "10px",
-    backgroundColor: "#0078ff",
-    border: "none",
-    color: "#fff",
-    padding: "8px 12px",
-    borderRadius: "5px",
-    cursor: "pointer",
-  };
 
   const fetchCourses = async () => {
     try {
@@ -53,7 +23,7 @@ function Courses() {
     fetchCourses();
   }, []);
 
-  //hndle student enrollmnt
+  // handle student enrollment
   const handleEnroll = async (courseId) => {
     try {
       await axios.post(
@@ -68,22 +38,21 @@ function Courses() {
     }
   };
 
-  if (loading) return <p style ={{ textAlign: "center"}}>Loading...</p>;
+  if (loading) return <p className="courses-loading">Loading...</p>;
 
   return (
-    <div style ={box}>
-      <h2>Available Courses</h2>
-      <div style={grid}>
+    <div className="courses-container">
+      <h2 className="courses-title">Available Courses</h2>
+      <div className="courses-grid">
         {courses.map((c) => (
-          <div key={c._id} style={card}>
-            <h3>{c.title}</h3>
-            <p>{c.description}</p>
-            <p><b>Category:</b> {c.category}</p>
-            <p><b>Price:</b> RS.{c.price}</p>
-
+          <div key={c._id} className="course-card">
+            <h3 className="course-name">{c.title}</h3>
+            <p className="course-desc">{c.description}</p>
+            <p className="course-cat"><b>Category:</b> {c.category}</p>
+            <p className="course-price"><b>Price:</b> RS.{c.price}</p>
             {role === "student" && (
-              <button style={button} onClick={() => handleEnroll(c._id)}>
-                Enroll 
+              <button className="course-enroll-btn" onClick={() => handleEnroll(c._id)}>
+                Enroll
               </button>
             )}
           </div>

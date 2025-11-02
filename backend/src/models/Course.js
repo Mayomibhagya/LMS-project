@@ -9,6 +9,7 @@ const CourseSchema = new mongoose.Schema({
   createdBy: { type: mongoose.Schema.Types.ObjectId,ref: 'User',required: true},
   lecturer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   materials: [{ type: String }], //files upload
+  status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
   createdAt: { type: Date, default: Date.now }
 });
 

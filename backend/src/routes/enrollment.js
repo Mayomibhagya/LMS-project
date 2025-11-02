@@ -12,5 +12,7 @@ router.get('/my', auth, enrollmentController.getMyEnrollments);
 
 // lecturer/admin view 
 router.get('/all', auth, enrollmentController.getAllEnrollments);
+router.post('/:id/complete', auth, enrollmentController.markCompleted);
+router.get('/progress', auth, enrollmentController.getProgress);
 
 module.exports = router;

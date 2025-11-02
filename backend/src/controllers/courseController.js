@@ -112,3 +112,82 @@ exports.uploadMaterial = async (req, res) => {
     res.status(500).json({ message: 'Server error', error });
   }
 };
+
+// for enrolled students or lecturers/admins
+exports.getCourseMaterials = async (req, res) => {
+  try {
+    const course = await Course.findById(req.params.id);
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+
+    // Only allow enrolled 
+    if (
+      req.user.role === 'admin' ||
+      req.user.id === (course.lecturer?.toString() || course.createdBy?.toString())
+    ) {
+      return res.json({ materials: course.materials });
+    }
+
+    // done enrolled and paid for students
+    if (req.user.role === 'student') {
+      const Enrollment = require('../models/Enrollment');
+      const enrollment = await Enrollment.findOne({ student: req.user.id, course: req.params.id, paymentStatus: 'paid' });
+      if (!enrollment) {
+        return res.status(403).json({ message: 'Not enrolled or payment pending' });
+      }
+      return res.json({ materials: course.materials });
+    }
+    return res.status(403).json({ message: 'Access denied' });
+  } catch (error) {
+    console.error('Error fetching materials:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
+};
+
+// approve course by admin
+exports.approveCourse = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    const course = await Course.findByIdAndUpdate(
+      req.params.id,
+      { status: 'approved' },
+      { new: true }
+    );
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+    res.json({ message: 'Course approved', course });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
+  }
+};
+
+// reject course by admin
+exports.rejectCourse = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    const course = await Course.findByIdAndUpdate(
+      req.params.id,
+      { status: 'rejected' },
+      { new: true }
+    );
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+    res.json({ message: 'Course rejected', course });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
+  }
+};
+
+// get allcourses by admin(peding)
+exports.getPendingCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    const pending = await Course.find({ status: 'pending' }).populate('lecturer','name email');
+    res.json(pending);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
+  }
+};
