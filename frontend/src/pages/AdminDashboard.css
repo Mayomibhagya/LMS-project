@@ -3,7 +3,7 @@
   max-width: 980px;
   margin: 0 auto;
   min-height: 100vh;
-  background: #eef2fa;
+  background: rgba(238, 242, 250, 0.85);
   font-family: Arial, sans-serif;
 }
 .admin-title {

@@ -1,7 +1,7 @@
 .courses-container {
   padding: 30px;
   font-family: Arial, sans-serif;
-  background: #f7f9fc;
+  background: rgba(247, 249, 252, 0.85);
   min-height: 100vh;
 }
 

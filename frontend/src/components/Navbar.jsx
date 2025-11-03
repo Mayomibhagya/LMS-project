@@ -1,5 +1,7 @@
 // frontend/src/components/Navbar.jsx
 import { Link, useNavigate } from "react-router-dom";
+import userImg from "../assets/user.png";
+
 
 function Navbar() {
   const navigate = useNavigate();
@@ -53,6 +55,10 @@ function Navbar() {
             {/* Student */}
             {role === "student" && (
               <>
+              <Link to="/" style={linkStyle}>
+                  Home
+                </Link>
+
                 <Link to="/courses" style={linkStyle}>
                   Courses
                 </Link>
@@ -66,7 +72,7 @@ function Navbar() {
             {role === "lecturer" && (
               <>
                 <Link to="/lecturer" style={linkStyle}>
-                  My Courses
+                  Add Courses
                 </Link>
                 <Link to="/courses" style={linkStyle}>
                   View All
@@ -101,21 +107,32 @@ function Navbar() {
               Logout
             </button>
 
-            <Link to="/profile" style={{
-              ...linkStyle,
-              padding: '4px 10px',
-              borderRadius: '100%',
-              background: '#fff',
-              color: '#0078ff',
-              fontSize: '19px',
-              lineHeight: '28px',
-              marginLeft: '6px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1.5px solid #0078ff'
-            }} title="Profile">
-              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M20 20c0-3.3-2.7-6-6-6s-6 2.7-6 6"/></svg>
+            <Link to="/profile"
+  style={{
+    ...linkStyle,
+    padding: "4px",
+    borderRadius: "50%",
+    background: "#fff",
+    marginLeft: "6px",
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "1.5px solid #0078ff",
+    width: "22px",
+    height: "22px"
+  }}
+  title="Profile"
+>
+  <img 
+    src={userImg} 
+    alt="Profile"
+    style={{
+      width: "20px",
+      height: "20px",
+      borderRadius: "50%",
+      objectFit: "cover"
+    }}
+  />
             </Link>
 
           </>

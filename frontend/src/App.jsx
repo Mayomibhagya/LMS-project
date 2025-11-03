@@ -28,7 +28,7 @@ function App() {
   const containerStyle = {
     padding: "20px",
     fontFamily: "Arial, sans-serif",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "transparent",
     minHeight: "100vh",
   };
 

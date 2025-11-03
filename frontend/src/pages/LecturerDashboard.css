@@ -1,7 +1,7 @@
 .lecturer-dashboard {
   padding: 30px;
   font-family: Arial, sans-serif;
-  background: #f8fafe;
+  background: rgba(248, 250, 254, 0.85);
   min-height: 100vh;
 }
 .lecturer-form {

@@ -1,0 +1,28 @@
+
+body {
+  position: relative;
+  background: none !important;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: url("./assets/s.png");
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+  opacity: 0.9;      
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+#root {
+  position: relative;
+  z-index: 2;
+}

@@ -1,7 +1,7 @@
 .dashboard {
   padding: 30px;
   font-family: Arial, sans-serif;
-  background: #f6f7fa;
+  background: rgba(246, 247, 250, 0.85);
   min-height: 100vh;
 }
 
