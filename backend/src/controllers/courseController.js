@@ -13,6 +13,7 @@ exports.createCourse = async (req, res) => {
       description: req.body.description,
       category: req.body.category,
       price: req.body.price,
+      duration: req.body.duration,
       createdBy: req.user.id,     
       lecturer: req.user.id       
     });

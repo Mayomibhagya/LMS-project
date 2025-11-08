@@ -9,7 +9,6 @@ function Dashboard() {
   const [materials, setMaterials] = useState([]);
   const [loadingMaterials, setLoadingMaterials] = useState(false);
   const [materialsError, setMaterialsError] = useState("");
-  const [progress, setProgress] = useState({ completed: 0, total: 0, percent: 0 });
   const [completing, setCompleting] = useState("");
 
   useEffect(() => {
@@ -28,21 +27,8 @@ function Dashboard() {
       }
     };
     fetchEnrollments();
-    fetchProgress();
   }, []);
 
-  // student progress
-  const fetchProgress = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/enrollments/progress", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setProgress(res.data);
-    } catch (err) {
-      setProgress({ completed: 0, total: 0, percent: 0 });
-    }
-  };
 
   const handleMarkComplete = async (enrollmentId) => {
     setCompleting(enrollmentId);
@@ -58,7 +44,6 @@ function Dashboard() {
           e._id === enrollmentId ? { ...e, status: "completed" } : e
         )
       );
-      fetchProgress();
     } catch {
       alert("Could not mark as completed");
     }
@@ -117,15 +102,6 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <h2 className="dashboard-title">My Enrollments</h2>
-      <section className="section-progress">
-        <h3>Your Progress</h3>
-        <div className="progress-bar-bg">
-          <div className="progress-bar-fill" style={{ width: progress.percent + '%' }}></div>
-        </div>
-        <div className="progress-stats">
-          {progress.completed} / {progress.total} modules completed ({progress.percent}%)
-        </div>
-      </section>
       {enrollments.length === 0 ? (
         <p className="dashboard-empty">No enrollments found.</p>
       ) : (
@@ -151,7 +127,7 @@ function Dashboard() {
                   onClick={() => handleMarkComplete(en._id)}
                   disabled={completing === en._id}
                 >
-                  {completing === en._id ? "Marking..." : "Mark Complete"}
+                  {completing === en._id ? "Complete Course ✓" : "Complete Course ✓"}
                 </button>
               )}
               {en.paymentStatus === "paid" && en.course?._id && (

@@ -8,6 +8,7 @@ function LecturerDashboard() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+  const [duration, setDuration] = useState("");
   const [uploadingId, setUploadingId] = useState("");
   const [files, setFiles] = useState({});
   const [materialList, setMaterialList] = useState({});
@@ -35,7 +36,7 @@ function LecturerDashboard() {
       const token = localStorage.getItem("token");
       await axios.post(
         "http://localhost:5000/api/courses",
-        { title, description, category, price },
+        { title, description, category, price, duration },
         { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
       );
       alert("Course added successfully!");
@@ -43,6 +44,7 @@ function LecturerDashboard() {
       setDescription("");
       setCategory("");
       setPrice("");
+      setDuration("");
       fetchCourses();
     } catch (err) {
       alert("Failed to add course");
@@ -130,18 +132,27 @@ function LecturerDashboard() {
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
+        <input
+          className="lecturer-input"
+          type="text"
+          placeholder="Course Duration (1 month)"
+          value={duration}
+          onChange={(e) => setDuration(e.target.value)}
+        />
         <button className="btn-file" type="submit">
           Add Course
         </button>
       </form>
       <h3>My Courses</h3>
       <div className="lecturer-grid">
+        
         {courses.map((course) => (
           <div key={course._id} className="lecturer-card">
             <h4>{course.title}</h4>
             <p>{course.description}</p>
             <p><b>Category:</b> {course.category}</p>
             <p><b>Price:</b> Rs.{course.price}</p>
+            <p><b>Duration:</b> {course.duration ? course.duration : "N/A"}</p>
 
             <div className="card-actions">
               <form
@@ -160,18 +171,15 @@ function LecturerDashboard() {
                   className="btn-file"
                   disabled={uploadingId === course._id}
                 >
-                  {uploadingId === course._id ? "Uploading..." : "Upload Material"}
+                  {uploadingId === course._id ? "Uploading..." : "Upload"}
                 </button>
               </form>
-              <button
-                className="btn-delete"
-                onClick={() => handleDelete(course._id)}
-              >Delete</button>
               <button
                 className="btn-file"
                 onClick={() => fetchMaterials(course._id)}
                 type="button"
               >Show Materials</button>
+               
             </div>
             <ul className="file-list" style={{ marginTop: '5px' }}>
               {(materialList[course._id] || []).length === 0 ? (
@@ -180,12 +188,16 @@ function LecturerDashboard() {
                 materialList[course._id]?.map((m, idx) => (
                   <li key={m}>
                     <a href={`http://localhost:5000/${m}`} target="_blank" rel="noopener noreferrer">
-                      Material {idx + 1}
+                     Lecture {idx + 1}
                     </a>
                   </li>
                 ))
               )}
             </ul>
+            <button
+                className="btn-delete"
+                onClick={() => handleDelete(course._id)}
+              >Delete</button>
           </div>
         ))}
       </div>

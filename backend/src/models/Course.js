@@ -6,6 +6,7 @@ const CourseSchema = new mongoose.Schema({
   description: { type: String },
   category: { type: String },
   price: { type: Number, default: 0 },
+  duration: { type: String, required: false },
   createdBy: { type: mongoose.Schema.Types.ObjectId,ref: 'User',required: true},
   lecturer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   materials: [{ type: String }], //files upload

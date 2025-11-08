@@ -43,7 +43,7 @@ function Login() {
       alert("Login successful!");
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
-      window.location.href = "/dashboard"; // Redirect to dashboard
+      window.location.href = "/"; // Redirect to home
     } catch (err) {
       alert("Invalid credentials");
     }

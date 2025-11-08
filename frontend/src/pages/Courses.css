@@ -67,6 +67,12 @@
   background: #005fbb;
 }
 
+.course-enroll-btn:disabled {
+  background: #a8b3c6;
+  color: #ffffff;
+  cursor: default;
+}
+
 .courses-loading {
   text-align: center;
   color: #555;
