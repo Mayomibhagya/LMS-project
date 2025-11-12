@@ -86,7 +86,7 @@ function Navbar() {
                 <Link to="/admindashboard" style={linkStyle}>
                   Admin Dashboard
                 </Link>
-                <Link to="/manage-users" style={linkStyle}>
+                <Link to="/managecourses" style={linkStyle}>
                   Manage Users
                 </Link>
               </>

@@ -1,94 +1,106 @@
 .profile-container {
-  max-width: 720px;
-  margin: 32px auto 0 auto;
-  background: rgba(247, 250, 255, 0.85);
-  padding: 36px 30px 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 2px 13px rgba(0,60,170,0.09);
-  min-height: 60vh;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px;
   font-family: Arial, sans-serif;
 }
+
 .profile-title {
   font-size: 2rem;
   text-align: center;
-  margin-bottom: 22px;
-  color: #21376a;
+  margin-bottom: 30px;
+  color: #333;
 }
+
 .profile-box {
   background: #fff;
-  border-radius: 9px;
-  padding: 20px 24px 18px 24px;
-  margin-bottom: 35px;
-  box-shadow: 0 1px 7px rgba(90,130,170,.09);
-  font-size: 1.08rem;
-  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 1rem;
 }
+
 .edit-form {
-  margin-top: 14px;
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 10px;
   align-items: center;
 }
+
 .edit-input {
-  padding: 6px 14px;
-  border: 1px solid #aad;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin-bottom: 0;
-}
-.edit-btn {
-  background: #0078ff;
-  color: #fff;
-  border: none;
-  padding: 7px 18px;
+  padding: 8px;
+  border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 1rem;
-  font-weight: bold;
-  transition: background 0.14s;
-  margin-bottom: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.edit-btn {
+  background: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 1rem;
   cursor: pointer;
 }
+
 .edit-btn.cancel {
-  background: #aaa; color: #fff; margin-left: 0;}
-.edit-btn:disabled { background: #c3e7fd; color: #3474a1;}
-.edit-btn:not(.cancel):hover:enabled { background: #125cc2; }
-.edit-btn.cancel:hover:enabled { background: #818181; }
+  background: #999;
+  color: #fff;
+}
+
+.edit-btn:disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
 .profile-ok {
-  color: #179d37;
+  color: #4caf50;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 1.14rem;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
 }
+
 .profile-enroll-title {
-  margin-bottom: 13px;
-  color: #225;
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.5rem;
 }
+
 .profile-enroll-list {
   display: grid;
-  gap: 14px;
-  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
+
 .profile-enroll-card {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 8px rgba(14,30,80,0.08);
-  padding: 16px 12px 12px 18px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 15px;
   font-size: 1rem;
-  color: #125;
-  min-width: 0;
+  color: #333;
 }
+
 .profile-enroll-empty {
-  color: #889;
+  color: #999;
   text-align: center;
   grid-column: 1 / -1;
   font-style: italic;
-  font-size: 1.08rem;
+  font-size: 1rem;
+  padding: 20px;
 }
+
 .profile-error {
-  color: #df1639;
+  color: #d32f2f;
   text-align: center;
-  margin-bottom: 14px;
-  font-size: 1.1rem;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
 }

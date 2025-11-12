@@ -7,7 +7,9 @@ import Dashboard from "./pages/Dashboard";
 import LecturerDashboard from "./pages/LecturerDashboard";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
+import ManageCourses from "./pages/ManageCourses";
 import Profile from "./pages/Profile";
+import './allbg.css';
 
 function App() {
   const navbarStyle = {
@@ -61,6 +63,7 @@ function App() {
           <Route path="/lecturer" element={<LecturerDashboard />} />
           <Route path="/register" element={<Register />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/managecourses" element={<ManageCourses />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
